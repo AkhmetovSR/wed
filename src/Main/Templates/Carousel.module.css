@@ -4,12 +4,13 @@
     height: 50vh;
     /*position: absolute;*/
     border: 1px solid green;
+    justify-content: center;
 }
 
 .CardCont {
     position: absolute;
-    left: 30vw;
-    top: 15vh;
+    left: 10vw;
+    top: 3vh;
     /*border: 1px solid red;*/
     filter: blur(calc(var(--abs) * 10px));
 }

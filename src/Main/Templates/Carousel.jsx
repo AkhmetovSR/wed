@@ -35,7 +35,7 @@ const Carousel = ({children}) => {
         endY = i.point.y;
         // startY - endY > 50 ? window.scrollTo({top: 800, behavior: 'smooth'}) : endY = 0;
         // endY - startY > 50 ? window.scrollTo({top: -800, behavior: 'smooth'}) : endY = 0;
-        if (active !== 2) {
+        if (active !== 3) {
             startX - endX > 50 ? setActive(active + 1) : startX += 0;
         }
         if (active !== 0) {
@@ -55,7 +55,7 @@ const Carousel = ({children}) => {
                              onTapStart={onTapStart}
                              onTap={onTap}
                              style={{
-                                 '--abs': Math.abs(active - i),
+                                 '--abs': Math.abs(active - i) / 2,
                                  'opacity': Math.abs(active - i) >= 3 ? '0' : '1',
                                  'display': Math.abs(active - i) > 2 ? 'none' : 'block',
                                  'touchAction': 'none'
@@ -64,7 +64,7 @@ const Carousel = ({children}) => {
                                  rotateY: (((active - i) / 10) * 10),
                                  scaleY: 1 + (((Math.abs(active - i)) / 2.5) * -0.9),
                                  translateZ: ((Math.abs(active - i)) / 2) * 5,
-                                 translateX: (Math.sign(i - active) * Math.abs(i - active)) * 10 * x,
+                                 translateX: (Math.sign(i - active) * Math.abs(i - active)) * 5 * x,
                                  zIndex: active > i ? i - active + 1 : active - i + 1
                              }}>
                         {child}
