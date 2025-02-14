@@ -55,7 +55,7 @@ const Carousel = ({children}) => {
                              onTapStart={onTapStart}
                              onTap={onTap}
                              style={{
-                                 '--abs': Math.abs(active - i) / 2,
+                                 '--abs': Math.abs(active - i),
                                  'opacity': Math.abs(active - i) >= 3 ? '0' : '1',
                                  'display': Math.abs(active - i) > 2 ? 'none' : 'block',
                                  'touchAction': 'none'

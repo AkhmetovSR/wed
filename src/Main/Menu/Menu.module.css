@@ -1,6 +1,6 @@
 .Menu{
     width: 80vw;
-    height: 10vh;
+    height: 70px;
     background-color: #282828;
     border-radius: 25px;
     position: absolute;
@@ -14,7 +14,7 @@
     height: 90%;
 }
 .MenuButton{
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     display: grid;
     align-content: center;
     justify-items: center;
