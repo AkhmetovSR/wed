@@ -1,0 +1,34 @@
+.RightDiv {
+    display: grid;
+    width: 99vw;
+    height: 50vh;
+    /*position: absolute;*/
+    border: 1px solid green;
+}
+
+.CardCont {
+    position: absolute;
+    left: 30vw;
+    top: 15vh;
+    /*border: 1px solid red;*/
+    filter: blur(calc(var(--abs) * 10px));
+}
+
+.divImg {
+    /*border: 1px solid red;*/
+    width: 40vw;
+    height: 50vw;
+    background-size: cover;
+    border-radius: 15px;
+    /*box-shadow: 2px 2px 5px 0px;*/
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+}
+.img{
+    width: 60%;
+}
