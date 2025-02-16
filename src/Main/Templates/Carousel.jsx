@@ -1,23 +1,22 @@
 import s from "./Carousel.module.css";
-import {motion} from "framer-motion";
-import {useState} from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import React from "react";
 import Temp1 from "./Temp1/Temp1.jsx";
 import Temp2 from "./Temp2/Temp2.jsx";
 import Temp3 from "./Temp3/Temp3.jsx";
 import Temp4 from "./Temp4/Temp4.jsx";
 
-
-
 const Templates = [
-    {id: 1, img: <Temp1/>},
-    {id: 2, img: <Temp2/>},
-    {id: 3, img: <Temp3/>},
-    {id: 3, img: <Temp4/>}
-
+    {id: 1, wife: "asd", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/HowMake"},
+    {id: 2, wife: "qwe", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/HowMake"},
+    {id: 3, wife: "zxc", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/Templates/asd"},
+    {id: 4, wife: ",./", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/Templates/asd"}
 ];
-const Carousel = ({children}) => {
+
+const Carousel = ({ children }) => {
     const [active, setActive] = useState(1);
+    const [selectedSlideId, setSelectedSlideId] = useState(null); // Состояние для выбранного слайда
     let [x, setX] = useState(4);
 
     let startX = 0;
@@ -25,73 +24,111 @@ const Carousel = ({children}) => {
     let startY = 0;
     let endY = 0;
 
-    function onTapStart(event, i) {
-        startX = i.point.x
-        startY = i.point.y
+    // Обработчик начала касания
+    function onTapStart(event, info) {
+        startX = info.point.x;
+        startY = info.point.y;
     }
 
-    function onTap(event, i) {
-        endX = i.point.x;
-        endY = i.point.y;
-        // startY - endY > 50 ? window.scrollTo({top: 800, behavior: 'smooth'}) : endY = 0;
-        // endY - startY > 50 ? window.scrollTo({top: -800, behavior: 'smooth'}) : endY = 0;
+    // Обработчик завершения касания
+    function onTap(event, info, index) {
+        endX = info.point.x;
+        endY = info.point.y;
+
+        // Проверяем, был ли это клик (минимальное перемещение)
+        // const deltaX = Math.abs(startX - endX);
+        // const deltaY = Math.abs(startY - endY);
+        // if (deltaX < 5 && deltaY < 5) {
+        //     const id = React.Children.toArray(children)[index].props["data-id"];
+        //     setSelectedSlideId(id); // Устанавливаем выбранный слайд
+        //     return;
+        // }
+
+        // Оригинальная логика свайпа
         if (active !== 3) {
-            startX - endX > 50 ? setActive(active + 1) : startX += 0;
+            startX - endX > 20 ? setActive(active + 1) : startX += 0;
         }
         if (active !== 0) {
-            endX - startX > 50 ? setActive(active - 1) : endX += 0;
+            endX - startX > 20 ? setActive(active - 1) : endX += 0;
         }
-
-        startX = null;
-        endX = null;
-        startY = null;
-        endY = null;
     }
+    const closeFullscreen = () => {
+        setSelectedSlideId(null);
+    };
 
     return (
         <motion.div className={s.RightDiv}>
-            {React.Children.map(children, (child, i = child.id) =>
-                (<motion.div className={s.CardCont}
-                             onTapStart={onTapStart}
-                             onTap={onTap}
-                             style={{
-                                 '--abs': Math.abs(active - i),
-                                 'opacity': Math.abs(active - i) >= 3 ? '0' : '1',
-                                 'display': Math.abs(active - i) > 2 ? 'none' : 'block',
-                                 'touchAction': 'none'
-                             }}
-                             animate={{
-                                 rotateY: (((active - i) / 10) * 10),
-                                 scaleY: 1 + (((Math.abs(active - i)) / 2.5) * -0.9),
-                                 translateZ: ((Math.abs(active - i)) / 2) * 5,
-                                 translateX: (Math.sign(i - active) * Math.abs(i - active)) * 5 * x,
-                                 zIndex: active > i ? i - active + 1 : active - i + 1
-                             }}>
+            {/* Рендерим слайды */}
+            {React.Children.map(children, (child, index) => {
+                const id = child.props["data-id"];
+                return (
+                    <motion.div
+                        key={id}
+                        className={s.CardCont}
+                        onTapStart={(e, info) => onTapStart(e, info)}
+                        onTap={(e, info) => onTap(e, info, index)}
+                        layoutId={`slide-${id}`} // Уникальный ID для анимации
+                        style={{
+                            "--abs": Math.abs(active - index),
+                            opacity: Math.abs(active - index) >= 3 ? "0" : "1",
+                            display: Math.abs(active - index) > 2 ? "none" : "block",
+                            touchAction: "none",
+                        }}
+                        animate={{
+                            rotateY: ((active - index) / 10) * 10,
+                            scaleY: 1 + (Math.abs(active - index) / 2.5 * -0.9),
+                            translateZ: (Math.abs(active - index) / 2) * 5,
+                            translateX: (Math.sign(index - active) * Math.abs(index - active)) * 5 * x,
+                            zIndex: active > index ? index - active + 1 : active - index + 1,
+                        }}
+                    >
+                        <button
+                            className={s.expandButton}
+                            onClick={() => setSelectedSlideId(id)}
+                        >
+                            ⤢
+                        </button>
                         {child}
                     </motion.div>
-                ))}
-        </motion.div>
-    )
-}
+                );
+            })}
 
-// const Card = ({image}) => (
-//     <div className={s.divImg}>
-//         <img src={image} className={s.img}/>
-//         <div>{image.img}</div>
-//     </div>
-// )
+            {/* Модальное окно для полноэкранного просмотра */}
+            {selectedSlideId !== null && (
+                <motion.div
+                    className={s.fullscreenOverlay}
+                    onClick={() => setSelectedSlideId(null)} // Закрыть при клике
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                >
+                    <motion.div
+                        className={s.fullscreenContent}
+                        layoutId={`slide-${selectedSlideId}`} // Анимация перехода
+                    >
+                        <button
+                            className={s.closeButton}
+                            onClick={closeFullscreen}
+                        >
+                            ×
+                        </button>
+                        {React.Children.toArray(children).find(
+                            (child) => child.props["data-id"] === selectedSlideId
+                        ).props.children}
+                    </motion.div>
+                </motion.div>
+            )}
+        </motion.div>
+    );
+};
+
 export default function RightDiv() {
     return (
         <Carousel>
-            {Templates.map(i => (<div>{i.img}</div>))}
+            {Templates.map((i) => (
+                <div data-id={i.id} key={i.id} className={s.Temp}>
+                    {i.wife}
+                </div>
+            ))}
         </Carousel>
-    )
+    );
 }
-//style={{backgroundImage: `url("${image}")`}}
-// function componentDidMount() {
-//     // Simple GET request using fetch
-//     // fetch('http://localhost:8080/')
-//     //     .then(response => response.json())
-//     //     .then(data => alert(data.text));
-//     // .then(data => this.setState({ totalReactPackages: data.total }));
-// }

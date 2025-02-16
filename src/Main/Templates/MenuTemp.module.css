@@ -1,0 +1,23 @@
+.MenuTemp{
+    width: 80%;
+    height: 12%;
+    background-color: #6c6c6c;
+    border-radius: 25px;
+    position: absolute;
+    left: 10%;
+    bottom: 5vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.Menu div{
+    width: 95%;
+    height: 90%;
+}
+.MenuButton{
+    /*border: 1px solid red;*/
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    text-decoration: none;
+    color: white;
+}

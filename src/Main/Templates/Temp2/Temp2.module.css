@@ -1,7 +1,14 @@
 .Temp2{
     width: 80vw;
     height: 70vh;
-    background-color: #f57676;
+    background-color: #ffffff;
+    /*border: 2px solid red;*/
+    border-radius: 10px;
+}
+.Background{
+    width: 80vw;
+    height: 70vh;
+    background-color: #ffffff;
     border: 2px solid red;
     border-radius: 10px;
 }
