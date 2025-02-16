@@ -4,19 +4,15 @@ import { useState } from "react";
 import React from "react";
 import MenuTemp from "./MenuTemp.jsx";
 import Temp from "./Temp/Temp.jsx";
-import Temp1 from "./Temp1/Temp1.jsx";
-import Temp2 from "./Temp2/Temp2.jsx";
-import Temp3 from "./Temp3/Temp3.jsx";
-import Temp4 from "./Temp4/Temp4.jsx";
 
 const Templates = [
-    {id: 1, wife: "asd", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/HowMake"},
-    {id: 2, wife: "qwe", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/HowMake"},
-    {id: 3, wife: "zxc", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/Templates/asd"},
-    {id: 4, wife: ",./", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/Templates/asd"},
-    {id: 5, wife: ",./", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/Templates/asd"},
-    {id: 6, wife: ",./", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/Templates/asd"},
-    {id: 7, wife: ",./", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/Templates/asd"}
+    {id: 1, wife: "asd", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/HowMake", backgroundColor: "white"},
+    {id: 2, wife: "qwe", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/HowMake", backgroundColor: "grey"},
+    {id: 3, wife: "zxc", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/Templates/asd", backgroundColor: "antiquewhite"},
+    {id: 4, wife: ",./", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/Templates/asd", backgroundColor: "darkslategray"},
+    {id: 5, wife: ",./", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/Templates/asd", backgroundColor: "lightpink"},
+    {id: 6, wife: ",./", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/Templates/asd", backgroundColor: "olive"},
+    {id: 7, wife: ",./", man: "asd", text: "", day: "", month: "", year: "", img: "", navLink: "/Templates/asd", backgroundColor: "skyblue"}
 ];
 
 const Carousel = ({ children }) => {

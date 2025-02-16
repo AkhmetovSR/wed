@@ -8,7 +8,7 @@ export default function Templates() {
 
     return (
         <AnimatePresence>
-            <motion.div className={s.Templates} initial={{scale:1.2, opacity:0}} animate={{scale:1, opacity:1}} exit={{scale:1.2}} transition={{duration:0.1}}>
+            <motion.div className={s.Templates} initial={{scale:1.2}} animate={{scale:1}} exit={{scale:1.2}} transition={{duration:0.1}}>
                 <Carousel/>
             </motion.div>
         </AnimatePresence>
