@@ -1,6 +1,6 @@
 .MenuTemp{
     width: 80%;
-    height: 12%;
+    height: 10%;
     background-color: #6c6c6c;
     border-radius: 25px;
     position: absolute;
@@ -20,4 +20,10 @@
     justify-items: center;
     text-decoration: none;
     color: white;
+}
+.MenuTemp div{
+    /*border: 1px solid red;*/
+    display: grid;
+    align-content: center;
+    justify-content: center;
 }
